@@ -62,24 +62,25 @@ function oikthf_set_terms( $taxonomy='theme_tags', $terms=null ) {
  */
 function oikthf_initialise_theme_tags() {
 
-	$theme_tags = array( "free" => "If the theme is a free theme" // see _oikth_type
-	, "premium" => "If the theme is a premium theme" // - see _oikth_type
-	, "HTML5  " => "Supports HTML5"
-	, "XHTML  " => "Supports XHTML"
-	, "responsive	" => "The theme displays well at various screen sizes"
-	, "fixedWidth" =>	"The theme doesn't display well at various screen sizes"
-	, "mobileMenu	" => "The theme displays a mobile-specific menu at small screen sizes"
-	, "accessibilityReady	" => "If the theme meets all of the guidelines at http://make.wordpress.org/themes/guidelines/guidelines-accessibility/"
+	$theme_tags = array( 
+	 "accessibilityReady	" => "If the theme meets all of the guidelines at http://make.wordpress.org/themes/guidelines/guidelines-accessibility/"
 	, "customBackground" => "if the theme supports the WordPress custom background feature"
 	, "customColors" => "If the theme allows a user to choose custom colors via an interface"
 	, "editorStyle" => " If the theme includes styles for the post editor that match the front-end"
 	, "featuredImageHeader" => "If the theme displays a featured image as a header"
+	, "fixedWidth" =>	"The theme doesn't display well at various screen sizes"
+	, "free" => "If the theme is a free theme" // see _oikth_type
 	, "grunt" => "If the theme includes support for grunt to allow development tasks to be automated"
+	, "mobileMenu	" => "The theme displays a mobile-specific menu at small screen sizes"
 	, "parallax" => "If the theme design includes a parallax feature"
+	, "premium" => "If the theme is a premium theme" // - see _oikth_type
 	, "psds" => "If the theme includes PhotoShop (PSD) files of the original design"
+	, "responsive	" => "The theme displays well at various screen sizes"
 	, "rtlLanguageSupport" => "If the theme includes right-to-left (RTL) style sheets"
 	, "starter" => "If the theme author considers this theme to be a starter theme"
 	, "translationReady" => "If the theme has all strings internationalised, loads a child theme text domain, and includes a .pot file"
+	, "HTML5  " => "Supports HTML5"
+	, "XHTML  " => "Supports XHTML"
 	);
 	oikthf_set_terms( "theme_tags", $theme_tags );
 }
