@@ -65,10 +65,10 @@ function oikthf_plugin_loaded() {
  */ 
 function oikthf_oik_fields_loaded() {
 	oikthf_register_pluginsSupported();
-	bw_register_custom_tags( "theme_tags", "oik-themes", "Theme tags" );
-	bw_register_custom_tags( "theme_layouts", "oik-themes", "Layouts" );
-	bw_register_custom_tags( "postFormats", "oik-themes", "Post Formats" );
-	bw_register_custom_tags( "browsersSupported", "oik-themes", "Browsers Supported" );
+	bw_register_custom_category( "theme_tags", "oik-themes", "Theme tags" );
+	bw_register_custom_category( "theme_layouts", "oik-themes", "Layouts" );
+	bw_register_custom_category( "postFormats", "oik-themes", "Post Formats" );
+	bw_register_custom_category( "browsersSupported", "oik-themes", "Browsers Supported" );
 	
 	bw_register_field_for_object_type( "theme_tags", "oik-themes" );
 	bw_register_field_for_object_type( "theme_layouts", "oik-themes" );
@@ -89,7 +89,7 @@ function oikthf_oik_fields_loaded() {
  */
 function oikthf_register_pluginsSupported() {
 
-	bw_register_field( "_oikth_plugins", "noderef", "Plugins styled", array( "#type" => "oik-plugins", '#optional' => true, "#multiple" => true  ) );
+	bw_register_field( "_oikth_plugins", "noderef", "Plugins styled", array( "#type" => "oik-plugins", '#optional' => true, "#multiple" => 5 ) );
 	bw_register_field_for_object_type( "_oikth_plugins", "oik-themes" );
 	
 
