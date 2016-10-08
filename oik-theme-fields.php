@@ -39,8 +39,15 @@ function oikthf_plugin_loaded() {
 
   add_action( 'oik_fields_loaded', 'oikthf_oik_fields_loaded', 11 );
 	add_action( "run_oik-theme-fields.php", "oikthf_run_oikthf" );
+	add_action( "init", "oikthf_init" );
 
 }
+
+function oikthf_init() {
+	remove_filter( 'post_class', 'genesis_featured_image_post_class' );
+	add_filter( "genesis_get_image_default_args", "oikthf_genesis_get_image_default_args", 10, 2 );
+	add_filter( "genesis_get_image", "oikthf_genesis_get_image", 10, 6 );
+}	
 
 
 
@@ -102,4 +109,68 @@ function oikthf_run_oikthf() {
 	oik_require( "admin/oik-theme-fields-run.php", "oik-theme-fields" );
 	oikthf_lazy_run_oikthf();
 }
+
+/**
+ * Set fallback values for the featured image
+ * 
+ * @param array $defaults
+ * @param array $args
+ * @return array with fallback parameters set 
+ */
+function oikthf_genesis_get_image_default_args( $defaults, $args ) {
+
+	bw_trace2();
+	unset( $defaults['fallback'] );
+	
+	$defaults['fallback']['html'] = "[github owner repository screenshot.png]";
+	$defaults['fallback']['url'] = null;
+	return( $defaults );
+}
+
+/**
+ * Implement 'genesis_get_image' for deferred finding of the attached image
+ * 
+ * @param string $output 
+ * @param array $args - fairly useless
+ * @param integer $id - may be 0
+ * @param string $html - could be the dummy github shortcode 
+ * @param string $url may be null
+ * @param string $src may be null
+ */
+function oikthf_genesis_get_image( $output, $args, $id, $html, $url, $src ) {
+	//bw_trace2();
+	if ( !$output ) {
+		$post = get_post( null );
+		//bw_trace2( $post, "post", null );
+		if ( $post->post_type == "oik-themes" ) {
+			$gitrepo = get_post_meta( $post->ID, "_oikp_git", true );
+			//bw_trace2( $gitrepo, "gitrepo", null );
+			if ( $gitrepo ) {
+				$image_file = oikthf_github_image_file( $gitrepo, "screenshot.png" ); 
+				$image = retimage( null, $image_file, $gitrepo ); 
+				$output = $image;
+			}
+		}
+	}	else {
+		// It's already set
+	}
+	return( $output );
+}
+
+/**
+ * Return a GitHub image file URL
+ * 
+ * @param string $gitrepo consisting of owner/repository e.g. bobbingwide/genesis-oik
+ * @param string $file the image file we want to display - we assume it exists
+ * @return string the full file URL
+ */ 
+function oikthf_github_image_file( $gitrepo, $file='screenshot.png' ) {
+	$github[] = "https://raw.githubusercontent.com";
+	$github[] = $gitrepo;
+	$github[] = "master";
+	$github[] = $file;
+	$target = implode( "/", $github );
+	return( $target );
+}
+ 
 
