@@ -47,6 +47,7 @@ function oikthf_init() {
 	remove_filter( 'post_class', 'genesis_featured_image_post_class' );
 	add_filter( "genesis_get_image_default_args", "oikthf_genesis_get_image_default_args", 10, 2 );
 	add_filter( "genesis_get_image", "oikthf_genesis_get_image", 10, 6 );
+	add_filter( "wp_get_attachment_image_src", "oikthf_wp_get_attachment_image_src", 10, 4 );
 }	
 
 
@@ -140,16 +141,9 @@ function oikthf_genesis_get_image_default_args( $defaults, $args ) {
 function oikthf_genesis_get_image( $output, $args, $id, $html, $url, $src ) {
 	//bw_trace2();
 	if ( !$output ) {
-		$post = get_post( null );
-		//bw_trace2( $post, "post", null );
-		if ( $post->post_type == "oik-themes" ) {
-			$gitrepo = get_post_meta( $post->ID, "_oikp_git", true );
-			//bw_trace2( $gitrepo, "gitrepo", null );
-			if ( $gitrepo ) {
-				$image_file = oikthf_github_image_file( $gitrepo, "screenshot.png" ); 
-				$image = retimage( null, $image_file, $gitrepo ); 
-				$output = $image;
-			}
+		$image_file = oikthf_github_repo_screenshot();
+		if ( $image_file ) {
+			$output = retimage( null, $image_file, "" ); 
 		}
 	}	else {
 		// It's already set
@@ -172,5 +166,42 @@ function oikthf_github_image_file( $gitrepo, $file='screenshot.png' ) {
 	$target = implode( "/", $github );
 	return( $target );
 }
+
+/**
+ * Implement 'wp_get_attachment_image_src' for oik-theme-fields 
+ * 
+ * @param array|false  $image         Either array with src, width & height, icon src, or false.
+ * @param int          $attachment_id Image attachment ID.
+ * @param string|array $size          Size of image. Image size or array of width and height values
+ *                                    (in that order). Default 'thumbnail'.
+ * @param bool         $icon          Whether the image should be treated as an icon. Default false.
+ */
+function oikthf_wp_get_attachment_image_src( $image, $attachment_id, $size, $icon ) {
+	if ( !$image ) {
+		$image[0] = oikthf_github_repo_screenshot();
+		// We can't set the width or height
+	} 
+	bw_trace2( $image, "image" );
+	bw_backtrace();
+	return( $image );	
+}
+
+/**
+ * Return the GitHub repository screenshot file
+ *
+ */
+function oikthf_github_repo_screenshot() {
+	$image_file = null;
+	$post = get_post( null );
+	//bw_trace2( $post, "post", null );
+	if ( $post->post_type == "oik-themes" ) {
+		$gitrepo = get_post_meta( $post->ID, "_oikp_git", true );
+		//bw_trace2( $gitrepo, "gitrepo", null );
+		if ( $gitrepo ) {
+			$image_file = oikthf_github_image_file( $gitrepo, "screenshot.png" ); 
+		}
+	}
+	return( $image_file );
+}	
  
 
