@@ -2,9 +2,9 @@
 Contributors: bobbingwide
 Donate link: http://www.oik-plugins.com/oik/oik-donate/
 Tags: shortcodes, smart, lazy
-Requires at least: 4.6.1
-Tested up to: 4.6.1
-Stable tag: 0.0.0
+Requires at least: 4.6.3
+Tested up to: 4.7.2
+Stable tag: 0.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,10 +33,16 @@ tbc
 1. oik-theme-fields in action
 
 == Upgrade Notice ==
+= 0.0.1 =
+Tested with WordPress 4.7.2
+
 = 0.0.0 =
 New plugin, available from GitHub. Extends oik-themes
 
 == Changelog == 
+= 0.0.1 =
+* Tested: With WordPress 4.7.2
+
 = 0.0.0 =
 * Added: New plugin with batch logic to initialise the taxonomies
 

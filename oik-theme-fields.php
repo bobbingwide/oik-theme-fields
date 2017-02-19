@@ -4,7 +4,7 @@ Plugin Name: oik theme fields
 Depends: oik base plugin, oik fields, oik themes
 Plugin URI: http://www.oik-plugins.com/oik-plugins/oik-theme-fields
 Description: Additional fields for oik-themes
-Version: 0.0.0
+Version: 0.0.1
 Author: bobbingwide
 Author URI: http://www.oik-plugins.com/author/bobbingwide
 Text Domain: oik-theme-fields
@@ -12,7 +12,7 @@ Domain Path: /languages/
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-    Copyright 2016 Bobbing Wide (email : herb@bobbingwide.com )
+    Copyright 2016,2017 Bobbing Wide (email : herb@bobbingwide.com )
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License version 2,
