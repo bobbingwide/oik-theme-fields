@@ -40,6 +40,8 @@ function oikthf_plugin_loaded() {
   add_action( 'oik_fields_loaded', 'oikthf_oik_fields_loaded', 11 );
 	add_action( "run_oik-theme-fields.php", "oikthf_run_oikthf" );
 	add_action( "init", "oikthf_init" );
+	
+	add_action( "oik_admin_menu", "oikthf_oik_admin_menu" );
 
 }
 
@@ -202,6 +204,48 @@ function oikthf_github_repo_screenshot() {
 		}
 	}
 	return( $image_file );
-}	
+}
+
+	
+
+/**
+ * Registers hooks to automatically set missing fields.
+ */
+function oikthf_oik_admin_menu() {
+	add_action( "save_post_oik-themes", "oikthf_save_post_oik_themes", 10, 3 );
+	add_action( "save_post", "oikthf_save_post", 10, 3 );
+}
+
+
+/**
+ * Implements 'save_post_oik-themes' action for oik-theme-fields
+ * 
+ * Lazy loads the logic
+ * 
+ * @param ID $post_ID ID of the post 
+ * @param object $post the post object
+ * @param bool $update true if it's an update
+ */ 
+function oikthf_save_post_oik_themes( $post_ID, $post, $update ) {
+	if ( "auto-draft" !== $post->post_status ) { 
+		oik_require( "admin/oik-theme-fields-save-post.php", "oik-theme-fields" );
+		oikthf_lazy_save_post_oik_themes( $post_ID, $post, $update );
+	}
+	//gob();
+
+}
+
+/**
+ * Implements 'save_post' for oik-plugin-fields
+ * 
+ * Not a good idea when working with other post types
+ * but this can be used to produce a Fatal message during the post update
+ * before we redirect to edit post, a separate transaction. 
+ */
+function oikthf_save_post( $post_ID, $post, $update ) {	
+	//gob();
+}
+
+
  
 
