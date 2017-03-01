@@ -5,7 +5,7 @@
 * Tags: shortcodes, smart, lazy
 * Requires at least: 4.6.3
 * Tested up to: 4.7.2
-* Stable tag: 0.0.1
+* Stable tag: 0.0.2
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,9 @@ tbc
 1. oik-theme-fields in action
 
 ## Upgrade Notice 
+# 0.0.2 
+Now sets the featured image when the oik-theme is created / updated, making the original logic somewhat redundant.
+
 # 0.0.1 
 Tested with WordPress 4.7.2
 
@@ -41,6 +44,9 @@ Tested with WordPress 4.7.2
 New plugin, available from GitHub. Extends oik-themes
 
 ## Changelog 
+# 0.0.2 
+* Added: Add logic to set the featured image to the screenshot.png or .jpg file found locally, from wordpress.org or GitHub https://github.com/bobbingwide/oik-theme-fields/issues/4
+
 # 0.0.1 
 * Tested: With WordPress 4.7.2
 

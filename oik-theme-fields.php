@@ -4,7 +4,7 @@ Plugin Name: oik theme fields
 Depends: oik base plugin, oik fields, oik themes
 Plugin URI: http://www.oik-plugins.com/oik-plugins/oik-theme-fields
 Description: Additional fields for oik-themes
-Version: 0.0.1
+Version: 0.0.2
 Author: bobbingwide
 Author URI: http://www.oik-plugins.com/author/bobbingwide
 Text Domain: oik-theme-fields
