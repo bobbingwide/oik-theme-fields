@@ -20,7 +20,7 @@ class OIK_theme_fields {
 	public $oikth_type = null; /* Theme Type  */
 	public $oikth_slug = null; /* Theme Slug - i.e. folder name */
 	public $oikth_desc = null;
-	public $oikth_git = null;
+	public $oikp_git = null;
 	public $git_owner = null;
 	public $git_repo = null;
 	public $post_ID = null;
@@ -80,7 +80,7 @@ class OIK_theme_fields {
 		$this->get_featured_image();
 		$this->oikth_type = $this->get_field( "_oikth_type" );
 		$this->oikth_slug = $this->get_field( "_oikth_slug" );
-		$this->oikth_git = $this->get_field( "_oikth_git" );
+		$this->oikp_git = $this->get_field( "_oikp_git" );
 		//$this->oikth_desc = $this->get_field( "_oikth_desc" );
 	}
 	
@@ -97,22 +97,22 @@ class OIK_theme_fields {
 	
 	
 	/**
-	 * Sets git_owner and git_repo from oikth_git
+	 * Sets git_owner and git_repo from oikp_git
 	 *
 	 * If only the owner is set then we copy assume the repo is the slug
 	 *
 	 */
 	function get_git_fields() {
-		if ( $this->oikth_git ) {
-			$slashpos = strpos( $this->oikth_git, "/" );
+		if ( $this->oikp_git ) {
+			$slashpos = strpos( $this->oikp_git, "/" );
 			if ( $slashpos ) {
-				$this->git_owner = substr( $this->oikth_git, 0, $slashpos );
-				$this->git_repo = substr( $this->oikth_git, $slashpos+1 ); 
+				$this->git_owner = substr( $this->oikp_git, 0, $slashpos );
+				$this->git_repo = substr( $this->oikp_git, $slashpos+1 ); 
 			} else {
-				$this->git_owner = $this->oikth_git;
+				$this->git_owner = $this->oikp_git;
 				// But it's wrong - so take the slug ?
 				$this->git_repo = $this->oikth_slug;
-				$this->set_field( "_oikth_git", $this->git_owner . '/' . $this->git_repo );
+				$this->set_field( "_oikp_git", $this->git_owner . '/' . $this->git_repo );
 			}
 			
 		}
