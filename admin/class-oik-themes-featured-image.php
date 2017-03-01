@@ -203,8 +203,8 @@ class OIK_themes_featured_image {
 	 */
 	function github() {
 		$file = null;
-		if ( $this->oik_theme_fields->oikth_git ) {
-			$file = $this->get_github_image_file( $this->oik_theme_fields->oikth_git, "screenshot.png" );
+		if ( $this->oik_theme_fields->oikp_git ) {
+			$file = $this->get_github_image_file( $this->oik_theme_fields->oikp_git, "screenshot.png" );
 		}
 		return $file; 
 	
